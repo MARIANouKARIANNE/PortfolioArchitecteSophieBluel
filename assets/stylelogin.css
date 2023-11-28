@@ -176,122 +176,54 @@ nav li {
 li:hover {
   color: #b1663c;
 }
-#introduction {
-  display: flex;
-  align-items: center;
-}
-#introduction figure {
-  flex: 1;
-}
-#introduction img {
+label {
   display: block;
-  margin: auto;
-  width: 80%;
+  padding-bottom: 10px;
 }
-
-#introduction article {
-  flex: 1;
-}
-#introduction h2 {
-  margin-bottom: 1em;
-}
-
-#introduction p {
-  margin-bottom: 0.5em;
-}
-#portfolio h2 {
+.form-box {
+  width: 90%;
+  max-width: 450px;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
-  margin-bottom: 1em;
+  padding-top: 170px;
 }
-
-.containerfiltre {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 15px;
+.form-box h2 {
+  margin-bottom: 60px;
+  font-size: 30px;
+  position: relative;
 }
-
-.filtre {
-  border-radius: 25px;
-  border: 2px #1d6154 solid;
-  padding: 12px 19px 12px 19px;
-  font-weight: 700;
-  font-size: 16px;
-  color: #1d6154;
-  background-color: white;
-  align-items: center;
-  flex-wrap: nowrap;
+.form-box a {
+    color: #3d3d3d;;
 }
-.filtre:hover {
-  background-color: #1d6154;
-  color: white;
+label.email {
+  margin-right: 300px;
 }
-.filtre:active {
-  background-color: #1d6154;
-  color: white;
+label.password {
+  margin-right: 250px;
 }
-.filtre:focus {
-  background-color: #1d6154;
-  color: white;
+.input-field {
+  margin: 50px;
 }
-
-.galleryS {
+input {
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
+  padding: 16px 15px;
+  border: 2px solid #f5f1f1;
+  box-shadow: 1px 1px 15px rgb(201, 198, 198);
 }
-
-.galleryS img {
-  width: 100%;
+.button{
+    padding-top: 40px ;
+    padding-left: 20px;
 }
-
-#contact {
-  width: 50%;
-  margin: auto;
-}
-#contact > * {
-  text-align: center;
-}
-#contact h2 {
-  margin-bottom: 20px;
-}
-#contact form {
-  text-align: left;
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-}
-
-#contact input {
-  height: 50px;
-  font-size: 1.2em;
-  border: none;
-  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-}
-#contact label {
-  margin: 2em 0 1em 0;
-}
-#contact textarea {
-  border: none;
-  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-}
-
-input[type="submit"] {
-  font-family: "Syne";
-  font-weight: 700;
-  color: white;
-  background-color: #1d6154;
-  margin: 2em auto;
-  width: 180px;
-  text-align: center;
-  border-radius: 60px;
-}
-
-footer nav ul {
-  display: flex;
-  justify-content: flex-end;
-  margin: 2em;
+input.buttonCo{
+    border-radius: 25px;
+    border: 2px #1d6154 solid;
+    padding: 8px 20px 8px 20px;
+    font-weight: 700;
+    font-size: 16px;
+    color:  white;
+    background-color:#1d6154; 
+    
 }
