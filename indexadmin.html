@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="./assets/styleadmin.css" />
     <script type="module" src="gallery.js" defer></script>
     <script  type ="module" src="modal.js"></script>
+    <script  type ="module" src="gallerymodal.js"></script>
     <script
       src="https://kit.fontawesome.com/c8d08ba702.js"
       crossorigin="anonymous"
@@ -58,23 +59,23 @@
       <section id="portfolio">
         <h2>Mes Projets</h2>
         <a href= "#modal1" class="js-modal" >
-
           <i class="fa-regular fa-pen-to-square"></i> modifier
-
         </a>
         <aside id="modal1" class="modal" style="display:none;" >
-          <div class="modal-wrapper">
-            <p>
-            <h1 > Galerie Photo </h1>
-              bla bla bla HAAAA AAAA aaaaa aaaaaa aaaaaa aaaaaaaaaaaaaaaaaa
-              aaaaaaaaaaaaaaaaaaaa
-            </p>
+          <div class="modal-wrapper js-modal-stop">
+            <button class ="js-close-modal"> <i class="fa-solid fa-xmark"></i></button>
+            <h3>Galerie Photo</h3>
+            <section class = "gallerymodalS">
+            </section>
+          <hr/>
+          <button class="boutonphoto">Ajouter une Photo </button>
+      </section>
+      <section class="galleryS"></section>
           </div>
         </aside>
-
-        <section class="galleryS"></section>
       </section>
       <section id="contact">
+        <script  type ="module" src="modal.js"></script>
         <h2>Contact</h2>
         <p>Vous avez un projet ? Discutons-en !</p>
         <form action="#" method="post">
