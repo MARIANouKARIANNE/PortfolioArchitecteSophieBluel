@@ -1,5 +1,7 @@
 const reponse = await fetch("gallery.json");
 const gallery = await reponse.json();
+const token = JSON.parse(localStorage.getItem("token"))
+console.log("token =>",token)
 
 function genererprojet(gallery) {
   for (let i = 0; i < gallery.length; i++) {
@@ -27,25 +29,34 @@ function genererprojet(gallery) {
     iconeElement.addEventListener("click", async (e) => {
       e.preventDefault();
       e.stopPropagation();
-      const iconeElement = article.id;
+      
+      const projetID = 1;
       let monToken = localStorage.getItem("token");
-      console.log(iconeElement);
-      let response = await fetch("http://localhost:5678/api/works/1", {
-        method : "DELETE",
-        headers : {
-          accept : "*/*",
-          authorization:`Bearer ${monToken}`,
-        },
+    
+      try {
+        let response = await fetch(`http://localhost:5678/api/works/${projetID}`, {
+          method: "DELETE",
+          headers: {
+            accept: "*/*",
+            authorization: `Bearer ${monToken}`,
+          },
+        });
+    
+        if (response.ok) {
+          
+          photoElement.remove();
+        } else {
+          
+          console.error("Erreur lors de la suppression du projet - Statut :", response.status);
+          console.error("Message d'erreur :", response.statusText);
+          alert("Erreur lors de la suppression du projet");
+        }
+      } catch (error) {
+        
+        console.error("Erreur :", error);
+        alert("Erreur lors de la suppression du projet");
       }
-    );
-    if (response.ok){
-      return false ;
-    }
-    else{
-      alert("erreur lors de la supression");
-    }
-
-  })
+    });
 }
 }
 

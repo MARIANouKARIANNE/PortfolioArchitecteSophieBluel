@@ -18,10 +18,10 @@ form.addEventListener("click",(e)=> {
         },
         body:JSON.stringify({email : email, password:password}),
     })
-    .then (authResponse => {
+    .then ((authResponse) => {
         console.log ("authResponse:", authResponse);
         if (authResponse.status === 200) {
-        window.location.replace("/index.html");
+        return authResponse.json()
         }
         else if  (authResponse.status === 401){
             errorMessage.textContent="accès non autorisé";
@@ -32,11 +32,12 @@ form.addEventListener("click",(e)=> {
             errorMessage.textContent = `Errror : ${authResponse.status}`;
         }
     })
-    .then (userData => {
+    .then ((userData) => {
         console.log("userData :", userData);
         if(userData){
-            window.localStorage.setItem("userData", JSON.stringify(userData));
-            window.location.replace="admin.html";
+            window.localStorage.setItem("token", JSON.stringify(userData["token"]));
+            window.localStorage.setItem("userId", JSON.stringify(userData["userId"]));
+            window.location.replace("indexadmin.html");
         }
     })
     .catch(error =>console.error(error));

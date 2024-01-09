@@ -12,9 +12,10 @@
     />
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/styleadmin.css" />
-    <script type="module" src="gallery.js" defer></script>
-    <script  type ="module" src="modal.js"></script>
-    <script  type ="module" src="gallerymodal.js"></script>
+    <script type="module"  src="gallery.js" ></script>
+    <script  src="modal.js" defer ></script>
+    <script  type="module" src="gallerymodal.js" ></script>
+    <script  src="modalphoto.js" defer></script>
     <script
       src="https://kit.fontawesome.com/c8d08ba702.js"
       crossorigin="anonymous"
@@ -62,17 +63,50 @@
           <i class="fa-regular fa-pen-to-square"></i> modifier
         </a>
         <aside id="modal1" class="modal" style="display:none;" >
+          <button class ="js-close-modal"> <i class="fa-solid fa-xmark"></i></button>
           <div class="modal-wrapper js-modal-stop">
-            <button class ="js-close-modal"> <i class="fa-solid fa-xmark"></i></button>
+           
             <h3>Galerie Photo</h3>
             <section class = "gallerymodalS">
             </section>
           <hr/>
-          <button class="boutonphoto">Ajouter une Photo </button>
+
+          <a href="#boutonphoto1" class="js-bouton">Ajouter une Photo </a>
+          <aside id="boutonphoto1" class="boutonphoto" style="display:none;" >
+            <div class="bouton-wrapper bouton-stop">
+              
+              <button class = "js-return-bouton"><i class="fa-solid fa-arrow-left"></i></button>
+
+              <h3>Ajout Photo</h3>
+              <section class = "ModalPhotos"></section>
+              <form id="form" enctype="multipart/form-data">
+                <p class="carrébleu">
+                  <i class="fa-regular fa-image"></i>
+                  <label for="input-file" class="input-file">+ Ajouter image</label>
+                  <img src="" name="imageUrl" id="emplacementPhoto">
+                  <input type="file" accept="image/jpeg, image/png, image/jpg" class="input-file" id="input-file" name="image">
+                  <p class="dimention">jpg, png : 4mo max</p>
+                </p>
+                <div class="input-group">
+                  <div class="input-field">
+                    <label class="Titre" for="title">Titre</label>
+                    <input type="text" id="title" name="title" />
+                  </div>
+                  <div class="input-field">
+                    <label class="Catégorie" for="category">Catégorie</label>
+                    <input type="text" id="category" name="category" />
+                    <button type="submit" id="submit">Valider</button>
+                  </div>
+                </div>
+              </form>
+              
+            </div>
+            </aside>
       </section>
       <section class="galleryS"></section>
           </div>
         </aside>
+            </section>
       </section>
       <section id="contact">
         <script  type ="module" src="modal.js"></script>
