@@ -6,6 +6,7 @@ console.log("token =>",token)
 function genererprojet(gallery) {
   for (let i = 0; i < gallery.length; i++) {
     const article = gallery[i];
+console.log("article", article)
 
     const sectionGallery = document.querySelector(".gallerymodalS");
 
@@ -17,6 +18,7 @@ function genererprojet(gallery) {
     imageElement.src = article.imageUrl;
 
     const iconeElement = document.createElement("div");
+    
     iconeElement.classList.add("deletePhoto");
     iconeElement.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
 
@@ -32,13 +34,13 @@ function genererprojet(gallery) {
       
       const projetID = 1;
       let monToken = localStorage.getItem("token");
-    
+    console.log("monToken", monToken )
       try {
         let response = await fetch(`http://localhost:5678/api/works/${projetID}`, {
           method: "DELETE",
           headers: {
             accept: "*/*",
-            authorization: `Bearer ${monToken}`,
+            Authorization: `Bearer ${monToken}`,
           },
         });
     

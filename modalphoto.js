@@ -22,14 +22,50 @@ form.addEventListener("submit", function (e) {
     },
     body: formData,
   })
-    .then((res) => res.text())
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(`Le serveur a répondu avec le statut ${res.status}`);
+      }
+      return res.json();
+    })
     .then((data) => {
-      console.log(data);
+      console.log("Réponse du serveur :", data);
 
       
+      const nouvellesDonneesElement = data;
+
+      
+      const conteneurGalerie = document.querySelector(".galleryS");
+      if (conteneurGalerie) {
+        const nouvelElementGalerie = creerNouvelElementGalerie(nouvellesDonneesElement);
+        conteneurGalerie.appendChild(nouvelElementGalerie.cloneNode(true));
+      } else {
+        console.error("Erreur : Conteneur de galerie non trouvé.");
+      }
+
+      
+      const conteneurGalerieModale = document.querySelector(".gallerymodalS");
+      if (conteneurGalerieModale) {
+        const nouvelElementGalerieModale = creerNouvelElementGalerie(nouvellesDonneesElement);
+        conteneurGalerieModale.appendChild(nouvelElementGalerieModale);
+      } else {
+        console.error("Erreur : Conteneur de galerie modale non trouvé.");
+      }
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.error("Erreur :", err);
+    });
 });
 
+function creerNouvelElementGalerie(data) {
+  
+  const nouvelElementGalerie = document.createElement("div");
+  nouvelElementGalerie.innerHTML = `
+    <img src="${data.imageUrl}" alt="${data.title}">
+    <h4>${data.title}</h4>
+    <p>${data.category}</p>
+  `;
 
+  return nouvelElementGalerie;
+}
 

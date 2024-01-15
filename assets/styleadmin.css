@@ -256,7 +256,7 @@ p.dimention {
   position: relative;
   bottom: 23px;
   left: 250px;
-  z-index: 2;
+  z-index: 3;
   font-size: 12px;
 }
 .modal-wrapper {
@@ -294,8 +294,15 @@ label.input-file {
   border: none;
   text-align: center;
 
+
 }
 
+img#emplacementPhoto{
+  position: relative;
+  right: 120px;
+
+  z-index : 4 ; 
+}
 
 .form-box {
   width: 90%;
