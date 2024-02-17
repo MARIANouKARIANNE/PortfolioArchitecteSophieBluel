@@ -111,6 +111,18 @@ ol,
 ul {
   list-style: none;
 }
+.li{
+  padding: 0 10px;
+  font-size: 1.2em;
+  text-decoration: none;
+  font: inherit;
+}
+.li:visited{
+  color: black;
+}
+.li:hover {
+  color: #b1663c;
+}
 blockquote,
 q {
   quotes: none;
@@ -207,12 +219,13 @@ label.password {
 .input-field {
   margin: 50px;
 }
-input {
+input  {
   width: 100%;
   padding: 16px 15px;
   border: 2px solid #f5f1f1;
   box-shadow: 1px 1px 15px rgb(201, 198, 198);
 }
+
 .button{
     padding-top: 40px ;
     padding-left: 20px;

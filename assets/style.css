@@ -172,6 +172,19 @@ nav li {
   padding: 0 10px;
   font-size: 1.2em;
 }
+.li{
+  padding: 0 10px;
+  font-size: 1.2em;
+  text-decoration: none;
+  font: inherit;
+  color: black;
+}
+.li:visited{
+  color: black;
+}
+.li:hover {
+  color: #b1663c;
+}
 
 li:hover {
   color: #b1663c;

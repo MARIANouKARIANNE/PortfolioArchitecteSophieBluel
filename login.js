@@ -10,6 +10,7 @@ form.addEventListener("click",(e)=> {
         document.getElementById("errorMessage").innerHTML="merci de bien vouloir remplir les champs" ;
         return;
     }
+    // envoie d'une requete POST vers l'API avec les infos d'identification
     fetch ("http://localhost:5678/api/users/login", {
         method : "POST",
         headers : {
@@ -20,6 +21,7 @@ form.addEventListener("click",(e)=> {
     })
     .then ((authResponse) => {
         console.log ("authResponse:", authResponse);
+        // réponsse statut de l'API 
         if (authResponse.status === 200) {
         return authResponse.json()
         }
@@ -34,6 +36,7 @@ form.addEventListener("click",(e)=> {
     })
     .then ((userData) => {
         console.log("userData :", userData);
+        // si les donnés utilisateurs sont renvoyé ( statut 200 ) , les enregistre localement et renvoie sur une autre page ( admin )
         if(userData){
             window.localStorage.setItem("token", JSON.stringify(userData["token"]));
             window.localStorage.setItem("userId", JSON.stringify(userData["userId"]));

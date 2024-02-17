@@ -26,14 +26,14 @@
       <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
       <nav>
         <ul>
-          <li href="/index.html">projets</li>
-          <li>contact</li>
-          <li>login</li>
-          <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
+          <li> <a class="li" a href="index.html">projets</a></li>
+          <li><a class="li" a href="#contact">contact</a></li>
+          <li><a class ="li" a href="login.html">login</a></li>
+          <li><img src="./assets/icons/instagram.png" alt="Instagram"/></li>
         </ul>
       </nav>
     </header>
-    <main>
+    <main>s
       <section id="introduction">
         <figure>
           <img src="./assets/images/sophie-bluel.png" alt="" />
@@ -80,13 +80,18 @@
               <h3>Ajout Photo</h3>
               <section class = "ModalPhotos"></section>
               <form id="form" enctype="multipart/form-data">
-                <p class="carrébleu">
+                <div class="carrébleu">
+                  <div class="div-input-file" id="divPhoto">
                   <i class="fa-regular fa-image"></i>
-                  <label for="input-file" class="input-file">+ Ajouter image</label>
+                  <label for="input-file" class="input-file" id="label-input-file"><p>+ Ajouter image</p></label>
+                  <p class="dimention">jpg, png : 4mo max</p>
+                </div>
+                <div class ="divPhoto" >
                   <img src="" name="imageUrl" id="emplacementPhoto">
                   <input type="file" accept="image/jpeg, image/png, image/jpg" class="input-file" id="input-file" name="image">
-                  <p class="dimention">jpg, png : 4mo max</p>
-                </p>
+                 
+                </div>
+                </div>
                 <div class="input-group">
                   <div class="input-field">
                     <label class="Titre" for="title">Titre</label>
@@ -94,7 +99,11 @@
                   </div>
                   <div class="input-field">
                     <label class="Catégorie" for="category">Catégorie</label>
-                    <input type="text" id="category" name="category" />
+                    <select id="categorySelect" name="category">
+                      <option value="1">Objet</option>
+                      <option value="2">Appartement</option>
+                      <option value="3">Hôtel et Restaurant</option>
+                  </select>
                     <button type="submit" id="submit">Valider</button>
                   </div>
                 </div>

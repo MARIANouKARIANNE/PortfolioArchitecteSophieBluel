@@ -176,6 +176,20 @@ nav li {
 li:hover {
   color: #b1663c;
 }
+.li {
+  padding: 0 10px;
+  font-size: 1.2em;
+  text-decoration: none;
+  font: inherit;
+  color: black;
+}
+.li:visited {
+  color: black;
+}
+.li:hover {
+  color: #b1663c;
+}
+
 #introduction {
   display: flex;
   align-items: center;
@@ -255,7 +269,8 @@ li:hover {
 p.dimention {
   position: relative;
   bottom: 23px;
-  left: 250px;
+  left: 150px;
+  top : 45px;
   z-index: 3;
   font-size: 12px;
 }
@@ -265,7 +280,7 @@ p.dimention {
   background-color: white;
 }
 .bouton-wrapper {
-  width: 630px;
+  width: 610px;
   height: 688px;
   background-color: white;
 }
@@ -277,10 +292,12 @@ i.fa-regular.fa-image {
   color: #b9c5cc;
 }
 input.input-file {
- display: none;
+  display: none;
 }
-label.input-file {
+
+label#label-input-file.input-file {
   border-radius: 25px;
+  display: block;
   width: 173px;
   height: 36px;
   font-weight: 700;
@@ -288,20 +305,35 @@ label.input-file {
   color: #306685;
   background-color: #b9c5cc;
   position: relative;
-  top: 100px;
-  left: 50px;
+  top: 40px;
+ left : 120px ;
   font-size: 15px;
   border: none;
   text-align: center;
-
-
+}
+label p {
+  position: relative;
+  top : 8px;
 }
 
-img#emplacementPhoto{
-  position: relative;
-  right: 120px;
 
-  z-index : 4 ; 
+
+select {
+  width: 424px;
+  margin-top: 10px;
+  padding: 16px 15px;
+  border: 2px solid #f5f1f1;
+  box-shadow: 1px 1px 15px rgb(201, 198, 198);
+  background-color: white;
+}
+
+
+img#emplacementPhoto {
+  
+  height: 170px;
+  z-index: 4;
+  position: relative;
+  left : 145px
 }
 
 .form-box {
@@ -324,16 +356,14 @@ img#emplacementPhoto{
 }
 label.Titre {
   margin-right: 300px;
-  
 }
 label.Catégorie {
   margin-right: 250px;
- 
 }
 .input-field {
   margin: 50px;
-  position:relative;
-  left : 50px;
+  position: relative;
+  left: 50px;
 }
 input {
   width: 390px;
@@ -355,18 +385,17 @@ button#submit {
   color: white;
   background-color: #a7a7a7;
   position: relative;
-  top : 15px ;
-  left : 100px;
+  top: 15px;
+  left: 100px;
 }
-button.js-return-bouton{
+button.js-return-bouton {
   border: none;
   background-color: white;
   color: black;
   position: relative;
-  top : 20px;
-  left : 30px; 
+  top: 20px;
+  left: 30px;
   size: 25px;
-  
 }
 
 .gallerymodalS {
@@ -487,7 +516,6 @@ i.fa-regular.fa-trash-can {
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-
 
 footer nav ul {
   display: flex;
