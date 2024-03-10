@@ -37,11 +37,10 @@ form.addEventListener("click",(e)=> {
     .then ((userData) => {
         console.log("userData :", userData);
         // si les donnés utilisateurs sont renvoyé ( statut 200 ) , les enregistre localement et renvoie sur une autre page ( admin )
-        if(userData){
-            window.localStorage.setItem("token", JSON.stringify(userData["token"]));
-            window.localStorage.setItem("userId", JSON.stringify(userData["userId"]));
+        if (userData) {
+            localStorage.setItem("token", userData.token);
             window.location.replace("indexadmin.html");
-        }
+          }
     })
     .catch(error =>console.error(error));
 });

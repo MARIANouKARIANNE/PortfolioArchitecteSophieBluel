@@ -1,75 +1,126 @@
-// requete HTTP GET pour récupérer fichier JSON " gallery.json"
-const reponse = await fetch("gallery.json");
-const gallery = await reponse.json();
-// génére les éléments HTML à chaque projet dans la galerie
-function genererprojet(gallery) {
-  //parcours de chaque projet dans la galerie
-  for (let i = 0; i < gallery.length; i++) {
-    const article = gallery[i];
+// récupérer la galerie depuis le backend
+async function fetchGalleryFromBackend() {
+  try {
+    const response = await fetch("http://localhost:5678/api/works", {
+      method: "GET",
+      headers: {
+        "Accept": "application/json"
+      }
+    });
 
-    const sectionGallery = document.querySelector(".galleryS");
-    // création d'une div pour représenter chaque projet
-    const photoElement = document.createElement("div");
-    photoElement.classList.add("projet");
-    photoElement.setAttribute("ArticleID", article.id);
-    photoElement.setAttribute("ArticleCategroryName", article.category.name);
-    // création élement img pour afficher l'image
-    const imageElement = document.createElement("img");
-    imageElement.src = article.imageUrl;
-    // création élément p pour afficher nom du projet
-    const nomElement = document.createElement("p");
-    nomElement.innerText = article.title;
-    //ajout de l'élément "img" et "p" à "div"
-    sectionGallery.appendChild(photoElement);
+    if (!response.ok) {
+      throw new Error("Impossible de récupérer les données de la galerie depuis le backend");
+    }
 
-    photoElement.appendChild(imageElement);
-    photoElement.appendChild(nomElement);
+    const gallery = await response.json();
+    return gallery;
+  } catch (error) {
+    console.log("Une erreur s'est produite lors de la récupération des données de la galerie depuis le backend :", error);
+    return null;
   }
 }
-// appel la fonction pour afficher tout les projets au chargement de la page
-genererprojet(gallery);
 
+// génére les éléments HTML pour chaque projet dans la galerie
+async function genererprojetFromBackend(gallery) {
+  try {
+    const sectionGallery = document.querySelector(".galleryS");
+
+    for (let i = 0; i < gallery.length; i++) {
+      const article = gallery[i];
+
+      const photoElement = document.createElement("div");
+      photoElement.classList.add("projet");
+      photoElement.setAttribute("ArticleID", article.id);
+      photoElement.setAttribute("ArticleCategroryName", article.category.name);
+
+      const imageElement = document.createElement("img");
+      imageElement.src = article.imageUrl;
+
+      const nomElement = document.createElement("p");
+      nomElement.innerText = article.title;
+
+      sectionGallery.appendChild(photoElement);
+      photoElement.appendChild(imageElement);
+      photoElement.appendChild(nomElement);
+    }
+  } catch (error) {
+    console.log("Une erreur s'est produite lors de la génération des projets depuis le backend :", error);
+  }
+}
+
+// appel la fonction pour afficher tous les projets au chargement de la page
+fetchGalleryFromBackend()
+  .then(gallery => {
+    if (!gallery) {
+      console.log("Impossible de récupérer les données de la galerie depuis le backend");
+      return;
+    }
+    genererprojetFromBackend(gallery);
+  })
+  .catch(error => {
+    console.log("Une erreur s'est produite lors de la récupération des données de la galerie depuis le backend :", error);
+  });
+
+// Filtrage des projets par catégorie
+async function filtrerProjetParCategorie(categorieId) {
+  try {
+    const gallery = await fetchGalleryFromBackend();
+
+    if (!gallery) {
+      console.log("Impossible de récupérer les données de la galerie depuis le backend");
+      return;
+    }
+
+    const galleryFiltree = gallery.filter(projet => projet.category.id === categorieId);
+
+    const sectionGallery = document.querySelector(".galleryS");
+    sectionGallery.innerHTML = ""; // efface le contenu de la galerie
+
+    genererprojetFromBackend(galleryFiltree);
+  } catch (error) {
+    console.log("Une erreur s'est produite lors du filtrage des projets :", error);
+  }
+}
+
+
+async function filtrerProjetParUtilisateur(userId) {
+  try {
+    const gallery = await fetchGalleryFromBackend();
+
+    if (!gallery) {
+      console.log("Impossible de récupérer les données de la galerie depuis le backend");
+      return;
+    }
+
+    const galleryFiltree = gallery.filter(projet => projet.userId === userId);
+
+    const sectionGallery = document.querySelector(".galleryS");
+    sectionGallery.innerHTML = ""; // efface le contenu de la galerie
+
+    genererprojetFromBackend(galleryFiltree);
+  } catch (error) {
+    console.log("Une erreur s'est produite lors du filtrage des projets :", error);
+  }
+}
+
+// Filtrage par utilisateur ( un seul donc affiche tout les projets )
 const buttonfiltretous = document.querySelector(".filtretous");
-
-buttonfiltretous.addEventListener("click", function () {
-  const gallerytous = gallery.filter(function (projet) {
-    // utilisation de l'id de l'user pour générer tout les projets d'un coup
-    return projet.userId === 1;
-  });
-  document.querySelector(".galleryS").innerHTML = "";
-  genererprojet(gallerytous);
+buttonfiltretous.addEventListener("click", () => {
+  filtrerProjetParUtilisateur(1); // Utilise l'ID de l'utilisateur approprié
 });
-// pour tout les autres boutons j'utilise leur category.id
 
+// Filtrage par catégorie
 const buttonfiltreobjets = document.querySelector(".filtreobjets");
-
-buttonfiltreobjets.addEventListener("click", function () {
-  const galleryobjet = gallery.filter(function (projet) {
-    return projet.category.id === 1;
-  });
-  // efface le contenu de la gallery 
-  document.querySelector(".galleryS").innerHTML = "";
-  // génére uniquement les projets qui correspondent au filtre 
-  genererprojet(galleryobjet);
+buttonfiltreobjets.addEventListener("click", () => {
+  filtrerProjetParCategorie(1); // Utilise l'ID de catégorie approprié
 });
+
 const buttonfiltreappartement = document.querySelector(".filtreappartement");
-
-buttonfiltreappartement.addEventListener("click", function () {
-  const galleryappartement = gallery.filter(function (projet) {
-    return projet.category.id === 2;
-  });
-  document.querySelector(".galleryS").innerHTML = "";
-  genererprojet(galleryappartement);
+buttonfiltreappartement.addEventListener("click", () => {
+  filtrerProjetParCategorie(2); // Utilise l'ID de catégorie approprié
 });
 
-const buttonfiltrehotelrestaurant = document.querySelector(
-  ".filtrehotelrestaurant"
-);
-
-buttonfiltrehotelrestaurant.addEventListener("click", function () {
-  const galleryhotelrestaurant = gallery.filter(function (projet) {
-    return projet.category.id === 3;
-  });
-  document.querySelector(".galleryS").innerHTML = "";
-  genererprojet(galleryhotelrestaurant);
+const buttonfiltrehotelrestaurant = document.querySelector(".filtrehotelrestaurant");
+buttonfiltrehotelrestaurant.addEventListener("click", () => {
+  filtrerProjetParCategorie(3); // Utilise l'ID de catégorie approprié
 });

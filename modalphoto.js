@@ -2,8 +2,9 @@
 let emplacementphoto = document.getElementById("emplacementPhoto");
 let inputFile = document.getElementById("input-file");
 let DivPhoto = document.getElementById("divPhoto");
+let errorMessages = document.getElementById("errorMessages");
 //récupération du token
-const token = JSON.parse(localStorage.getItem("token"));
+const token = localStorage.getItem("token");
 console.log("token =>", token);
 // événement déclenché lors du changement de fichier sélectionné
 inputFile.onchange = function () {
@@ -29,6 +30,12 @@ form.addEventListener("submit", function (e) {
   // la catégorie selectionné est ajouté au formulaire
   formData.append("categorySelect", selectedCategory);
   // envoie de la requete POST avec les données du formulaire
+  if (!inputFile.files[0] || !selectedCategory) {
+    errorMessages.textContent = "Merci de remplir tous les champs.";
+    return;
+  } else {
+    errorMessages.textContent = "";
+  }
   fetch("http://localhost:5678/api/works", {
     method: "POST",
     headers: {
